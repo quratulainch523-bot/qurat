@@ -1,0 +1,74 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICAP CAF Result Countdown</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); text-align: center; }
+        p { font-size: 1.2rem; color: #00d2ff; margin-bottom: 30px; }
+        #countdown { display: flex; gap: 20px; }
+        .box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 80px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .number { font-size: 3rem; font-weight: bold; color: #fff; }
+        .label { font-size: 0.9rem; text-transform: uppercase; color: #00d2ff; margin-top: 5px; }
+    </style>
+</head>
+<body>
+
+    <h1>ICAP CAF Autumn 2026 Result</h1>
+    <p>The Final Countdown to Success 👑</p>
+
+    <div id="countdown">
+        <div class="box"><div class="number" id="days">00</div><div class="label">Days</div></div>
+        <div class="box"><div class="number" id="hours">00</div><div class="label">Hours</div></div>
+        <div class="box"><div class="number" id="minutes">00</div><div class="label">Mins</div></div>
+        <div class="box"><div class="number" id="seconds">00</div><div class="label">Secs</div></div>
+    </div>
+
+    <script>
+        // Target Date: 19 October 2026 at 9:00 AM PKT
+        const countDownDate = new Date("Oct 19, 2026 09:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "<h2 style='color:#00ff88;'>Result is OUT! Best of Luck!</h2>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
